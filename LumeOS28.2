@@ -10,7 +10,7 @@
   :root {
     --spring-fluid: cubic-bezier(0.22, 1, 0.36, 1);
     --spring-harmony: cubic-bezier(0.19, 1, 0.22, 1);
-    --ios18-ease: cubic-bezier(0.32, 0.72, 0, 1);
+    --spring-tactile: cubic-bezier(0.25, 0.85, 0.25, 1);
     --ios-blue: #0a84ff;
     --ios-green: #30d158;
     --ios-orange: #ff9f0a;
@@ -151,16 +151,15 @@
   }
 
   /* =========================================================
-     HOME SCREEN & APP LIBRARY PAGER
+     HOME SCREEN & APP LIBRARY PAGER (No Lock/App Animations)
      ========================================================= */
   #homeScreen {
     position: absolute;
-    inset: 48px 0 48px 0;
+    inset: 48px 0 0 0;
     z-index: 12;
     display: flex;
     width: 200vw;
     transform-origin: center center;
-    transition: transform 0.42s var(--ios18-ease), opacity 0.38s ease, filter 0.38s ease;
   }
   #homeScreen.library-active {
     transform: translateX(-100vw);
@@ -169,19 +168,18 @@
   .screen-page {
     width: 100vw;
     height: 100%;
-    padding: 4px 20px 6px;
+    padding: 6px 24px 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
   }
 
-  /* Compact Widgets Row: Left/Right Edges Match 4-App Grid Below */
+  /* Top 2x2 Widgets Row */
   .widgets-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    width: 100%;
-    margin-bottom: 12px;
+    gap: 16px;
+    margin-bottom: 14px;
     flex-shrink: 0;
   }
 
@@ -190,52 +188,48 @@
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    width: 100%;
-    transform-origin: center center;
-    transition: transform 0.36s var(--ios18-ease), filter 0.36s ease, opacity 0.32s ease;
   }
 
   .widget-box {
     width: 100%;
-    aspect-ratio: 1 / 0.66;
-    border-radius: 22px;
-    padding: 10px 13px;
+    aspect-ratio: 1 / 0.92;
+    border-radius: 24px;
+    padding: 13px 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border: 1px solid rgba(255, 255, 255, 0.14);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.18);
     transform-origin: center center;
     cursor: pointer;
   }
 
   .widget-weather {
-    background: linear-gradient(180deg, rgba(110, 128, 156, 0.84) 0%, rgba(92, 108, 134, 0.88) 100%);
+    background: linear-gradient(180deg, rgba(64, 84, 114, 0.8) 0%, rgba(42, 56, 80, 0.86) 100%);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
   }
 
   .widget-calendar {
-    background: rgba(20, 20, 24, 0.88);
+    background: rgba(24, 24, 28, 0.88);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
   }
 
   .widget-caption {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.92);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75);
   }
 
-  /* 4-Column Strict 1:1 App Icon Grid */
+  /* 4-Column App Icon Grid with Clear Breathing Room Above Dock */
   .app-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 11px 8px;
-    width: 100%;
+    gap: 13px 12px;
     justify-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
     flex-shrink: 0;
   }
 
@@ -245,44 +239,34 @@
     align-items: center;
     gap: 4px;
     position: relative;
-    width: 100%;
+    width: 68px;
     cursor: pointer;
-    transform-origin: center center;
-    transition: transform 0.36s var(--ios18-ease), filter 0.36s ease, opacity 0.32s ease;
   }
 
-  /* Strict 1:1 App Squircle */
   .app-squircle {
-    width: 58px;
-    height: 58px;
-    aspect-ratio: 1 / 1;
-    border-radius: 16px;
-    background: #141417;
+    width: 56px;
+    height: 56px;
+    border-radius: 15px;
+    background: #1c1c1e;
     display: grid;
     place-items: center;
     position: relative;
     overflow: hidden;
     transform-origin: center center;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.42), inset 0 1px 0.8px rgba(255, 255, 255, 0.18);
-  }
-  .app-squircle > svg {
-    width: 72%;
-    height: 72%;
-    aspect-ratio: 1 / 1;
-    display: block;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4), inset 0 1px 0.8px rgba(255, 255, 255, 0.22);
   }
   .app-squircle::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(155deg, rgba(255, 255, 255, 0.12) 0%, transparent 48%);
+    background: linear-gradient(155deg, rgba(255, 255, 255, 0.16) 0%, transparent 48%);
     pointer-events: none;
   }
 
   .badge-pill {
     position: absolute;
-    top: -4px;
-    right: 6px;
+    top: -5px;
+    right: 2px;
     min-width: 19px;
     height: 19px;
     padding: 0 5px;
@@ -299,7 +283,7 @@
   }
 
   .app-label {
-    font-size: 10px;
+    font-size: 10.5px;
     font-weight: 500;
     letter-spacing: -0.1px;
     color: rgba(255, 255, 255, 0.94);
@@ -310,16 +294,15 @@
     text-overflow: ellipsis;
   }
 
-  /* Search Pill + Dots */
+  /* Search Pill + Dots + Dedicated Spacer Before Dock */
   .home-middle-spacer {
     flex: 1;
-    min-height: 12px;
+    min-height: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5px;
-    transition: transform 0.36s var(--ios18-ease), filter 0.36s ease, opacity 0.32s ease;
+    gap: 8px;
   }
 
   .search-pill-btn {
@@ -350,33 +333,30 @@
   }
   .page-dot.active { background: #ffffff; transform: scale(1.1); }
 
-  /* Floating Dock (Strict 1:1 Icons) */
+  /* Floating Dock with Clear Margin Below Apps */
   #dock {
     width: 100%;
-    height: 74px;
+    height: 80px;
     border-radius: 28px;
-    background: rgba(34, 36, 44, 0.56);
+    background: rgba(36, 38, 46, 0.58);
     backdrop-filter: blur(36px) saturate(175%);
     -webkit-backdrop-filter: blur(36px) saturate(175%);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
     justify-content: space-around;
     padding: 0 10px;
-    margin-bottom: 4px;
+    margin-bottom: 14px;
     flex-shrink: 0;
-    transition: transform 0.36s var(--ios18-ease), filter 0.36s ease, opacity 0.32s ease;
   }
   #dock .app-item { width: 58px; gap: 0; }
-  #dock .app-squircle { width: 56px; height: 56px; aspect-ratio: 1 / 1; }
-  #dock .badge-pill { top: -4px; right: 1px; }
 
-  /* App Library Page with Fixed 1:1 Icons & Squircle Shapes */
+  /* App Library Page with Title Divider Line & Real App Icons */
   #appLibraryPage {
     gap: 12px;
     overflow-y: auto;
-    padding-bottom: 24px;
+    padding-bottom: 38px;
   }
   .lib-header-wrap {
     display: flex;
@@ -424,24 +404,21 @@
   .lib-folder-quad {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 8px;
     flex: 1;
-    place-items: center;
   }
   .lib-quad-item {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
-    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
   }
   .lib-quad-item .app-squircle {
     width: 44px;
     height: 44px;
-    aspect-ratio: 1 / 1;
-    border-radius: 13px;
+    border-radius: 12px;
   }
   .lib-folder-name {
     text-align: center;
@@ -451,13 +428,13 @@
   }
 
   /* =========================================================
-     LOCK SCREEN (Exact 1:1 Finger Tracking + Smooth Reveal)
+     LOCK SCREEN (Instant Unlock - No App Reveal Animation)
      ========================================================= */
   #lockScreen {
     position: absolute;
     inset: 0;
     z-index: 86;
-    padding: 68px 24px 56px;
+    padding: 68px 24px 36px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -519,7 +496,6 @@
   .ls-sq-btn {
     width: 50px;
     height: 50px;
-    aspect-ratio: 1 / 1;
     border-radius: 16px;
     background: rgba(34, 38, 52, 0.65);
     backdrop-filter: blur(24px);
@@ -535,17 +511,14 @@
     font-weight: 500;
     color: rgba(255, 255, 255, 0.72);
     letter-spacing: 0.2px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 
   /* =========================================================
-     iOS 18 STYLE APP OPEN & CLOSE STAGE
+     INSTANT APP STAGE (No Open or Close Animations)
      ========================================================= */
   #appStage {
     position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: calc(100dvh - 48px);
     z-index: 52;
     overflow: hidden;
     display: none;
@@ -553,17 +526,7 @@
     background: #09090b;
     color: #ffffff;
     transform-origin: center center;
-    transform: scale(0.24);
-    opacity: 0;
-    border-radius: 44px;
-    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.78);
-    transition: transform 0.38s var(--ios18-ease), opacity 0.24s ease, border-radius 0.38s var(--ios18-ease);
-  }
-  #appStage.open {
-    display: flex;
-    transform: scale(1);
-    opacity: 1;
-    border-radius: 0px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7);
   }
   #appStage.light-theme {
     background: #f2f2f7;
@@ -606,7 +569,7 @@
   .app-scroll-area {
     flex: 1;
     overflow-y: auto;
-    padding: 16px 18px 36px;
+    padding: 16px 18px 48px;
     touch-action: pan-y;
   }
 
@@ -659,7 +622,6 @@
   .key-btn {
     width: 72px;
     height: 72px;
-    aspect-ratio: 1 / 1;
     border-radius: 22px;
     background: #2c2c2e;
     display: flex;
@@ -671,14 +633,33 @@
   .key-digit { font-size: 28px; font-weight: 400; line-height: 1; }
   .key-letters { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: rgba(255, 255, 255, 0.7); margin-top: 2px; }
 
+  /* Calculator Pad */
+  .calc-pad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .calc-key {
+    aspect-ratio: 1 / 1;
+    border-radius: 22px;
+    background: #333333;
+    color: #ffffff;
+    font-size: 22px;
+    display: grid;
+    place-items: center;
+    transform-origin: center center;
+  }
+  .calc-key.fn { background: #a5a5a5; color: #000000; font-weight: 500; }
+  .calc-key.op { background: var(--ios-orange); color: #ffffff; font-size: 24px; }
+
   /* =========================================================
-     CONTROL CENTER
+     CONTROL CENTER (Shrunk in Center, 1:1 Squares, Bigger Icons)
      ========================================================= */
   #controlCenter {
     position: absolute;
-    inset: 0 0 48px 0;
+    inset: 0;
     z-index: 80;
-    padding: 52px 26px 20px;
+    padding: 50px 28px 28px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -693,13 +674,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 34px;
+    height: 32px;
   }
 
   .cc-sq-mini {
-    width: 32px;
-    height: 32px;
-    aspect-ratio: 1 / 1;
+    width: 30px;
+    height: 30px;
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.14);
     border: 1px solid rgba(255, 255, 255, 0.16);
@@ -715,12 +695,13 @@
     font-size: 11.5px;
     font-weight: 600;
     padding: 0 2px;
-    margin-top: 8px;
+    margin-top: 6px;
   }
 
+  /* Centered & Slightly Shrunk Control Cluster */
   .cc-center-cluster {
-    width: 92%;
-    max-width: 316px;
+    width: 90%;
+    max-width: 310px;
     margin: auto auto;
     transform-origin: center center;
   }
@@ -729,7 +710,7 @@
     position: relative;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
+    gap: 10px;
     width: 100%;
   }
 
@@ -737,17 +718,18 @@
     transform-origin: center center;
   }
 
+  /* Top-Left 2x2 Connectivity Cluster */
   .cc-conn-box {
     grid-column: span 2;
     aspect-ratio: 1 / 1;
     border-radius: 22px;
     background: rgba(52, 55, 66, 0.62);
     border: 1px solid rgba(255, 255, 255, 0.16);
-    padding: 11px;
+    padding: 9px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: 10px;
+    gap: 8px;
   }
 
   .cc-conn-btn {
@@ -767,7 +749,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: 6px;
+    gap: 4px;
     padding: 1px;
   }
   .cc-quad-dot {
@@ -778,23 +760,25 @@
   }
   .cc-quad-dot.on-white { background: #ffffff; color: #111111; }
 
+  /* Top-Right 2x2 Now Playing Module */
   .cc-media-box {
     grid-column: span 2;
     aspect-ratio: 1 / 1;
     border-radius: 22px;
     background: rgba(52, 55, 66, 0.62);
     border: 1px solid rgba(255, 255, 255, 0.16);
-    padding: 12px;
+    padding: 11px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
 
+  /* Identical 1:1 Square Controls Cluster */
   .cc-mid-squares {
     grid-column: span 2;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    gap: 10px;
   }
 
   .cc-square-toggle {
@@ -818,12 +802,13 @@
     box-shadow: 0 6px 20px rgba(255, 255, 255, 0.24);
   }
 
+  /* Vertical Brightness & Volume Sliders */
   .cc-slider-pill {
     grid-column: span 1;
     position: relative;
     width: 100%;
     height: 100%;
-    min-height: 124px;
+    min-height: 122px;
     border-radius: 20px;
     background: rgba(52, 55, 66, 0.62);
     border: 1px solid rgba(255, 255, 255, 0.16);
@@ -846,6 +831,7 @@
     pointer-events: none;
   }
 
+  /* Recognize Music Rectangle (1 Height x 2 Width Matching Square Grid Width) */
   .cc-shazam-box {
     grid-column: span 2;
     aspect-ratio: 2 / 1;
@@ -861,6 +847,7 @@
   }
   .cc-shazam-box.active-white { background: rgba(255, 255, 255, 0.95); color: #111111; }
 
+  /* Bottom Two Squares: Focus & AIO Downloader */
   .cc-bottom-square {
     grid-column: span 2;
     aspect-ratio: 1.12 / 1;
@@ -890,9 +877,9 @@
      ========================================================= */
   #notificationCenter {
     position: absolute;
-    inset: 0 0 48px 0;
+    inset: 0;
     z-index: 82;
-    padding: 66px 24px 24px;
+    padding: 66px 24px 36px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -942,12 +929,11 @@
     display: flex;
     justify-content: space-between;
     padding: 0 18px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
   .nc-sq-btn {
     width: 50px;
     height: 50px;
-    aspect-ratio: 1 / 1;
     border-radius: 16px;
     background: rgba(32, 35, 46, 0.64);
     backdrop-filter: blur(24px);
@@ -963,9 +949,9 @@
      ========================================================= */
   #appSwitcher {
     position: absolute;
-    inset: 0 0 48px 0;
+    inset: 0;
     z-index: 85;
-    padding: 66px 22px 24px;
+    padding: 66px 22px 38px;
     display: none;
     flex-direction: column;
     align-items: center;
@@ -983,7 +969,7 @@
     position: relative;
     width: 100%;
     max-width: 310px;
-    height: 390px;
+    height: 410px;
     margin: auto 0;
     display: flex;
     align-items: center;
@@ -993,7 +979,7 @@
   .switcher-card {
     position: absolute;
     width: 244px;
-    height: 344px;
+    height: 356px;
     border-radius: 30px;
     background: linear-gradient(165deg, #242632 0%, #14151c 100%);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -1021,9 +1007,9 @@
   /* Spotlight Search Overlay */
   #spotlightOverlay {
     position: absolute;
-    inset: 0 0 48px 0;
+    inset: 0;
     z-index: 84;
-    padding: 64px 22px 24px;
+    padding: 64px 22px 32px;
     display: none;
     background: rgba(10, 12, 20, 0.84);
     backdrop-filter: blur(38px) saturate(180%);
@@ -1034,51 +1020,28 @@
     display: block;
   }
 
-  /* =========================================================
-     3 ANDROID NAVIGATION BUTTONS: BIGGER, MORE SPACE, SEAMLESS BG, SPAM-READY
-     ========================================================= */
-  #androidNavBar {
+  /* Bottom Home Bar */
+  #homeBarZone {
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
-    height: 48px;
-    padding: 0 24px;
-    background: transparent;
-    border-top: none;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 230px;
+    height: 34px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 110;
-    pointer-events: auto;
-    touch-action: manipulation;
-  }
-  #androidNavBar.light-nav {
-    background: transparent;
-    border-top: none;
-    color: #111111;
-  }
-
-  .android-nav-btn {
-    width: 84px;
-    height: 44px;
-    display: grid;
-    place-items: center;
-    border-radius: 14px;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 9px;
+    z-index: 100;
     cursor: pointer;
-    color: inherit;
-    touch-action: manipulation;
-    transition: transform 0.08s ease, opacity 0.08s ease;
   }
-  .android-nav-btn svg {
-    width: 24px;
-    height: 24px;
-    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.65));
+  #homeBarPill {
+    width: 136px;
+    height: 5px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.95);
   }
-  .android-nav-btn.pressed {
-    transform: scale(0.86);
-    opacity: 0.65;
-  }
+  #homeBarPill.dark-pill { background: rgba(0, 0, 0, 0.85); }
 </style>
 </head>
 <body>
@@ -1090,7 +1053,7 @@
 
   <!-- Top Status Bar -->
   <header id="statusBar">
-    <span id="statusTime">13:57</span>
+    <span id="statusTime">12:55</span>
     <div class="status-icons">
       <svg width="16" height="11" viewBox="0 0 16 11" fill="currentColor">
         <rect x="0" y="7" width="2.8" height="4" rx="1"/>
@@ -1103,7 +1066,7 @@
       </svg>
       <svg width="25" height="12" viewBox="0 0 25 12" fill="none">
         <rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" stroke-opacity="0.45"/>
-        <rect x="2" y="2" width="14" height="8" rx="1.8" fill="currentColor"/>
+        <rect x="2" y="2" width="16" height="8" rx="1.8" fill="currentColor"/>
         <path d="M23 4v4a1.5 1.5 0 0 0 0-4z" fill="currentColor" fill-opacity="0.5"/>
       </svg>
     </div>
@@ -1118,20 +1081,18 @@
   <main id="homeScreen">
     <!-- Page 1: Primary Home Screen -->
     <section class="screen-page" id="primaryHomePage">
-      <!-- Compact Widgets (Left/Right Edges Aligned with 4-App Grid Below) -->
+      <!-- Top 2x2 Widgets -->
       <div class="widgets-grid">
         <div class="widget-unit" data-launch="Weather">
           <div class="widget-box widget-weather">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-              <div>
-                <div style="font-size:12px;font-weight:600;display:flex;align-items:center;gap:3px;">BAGHDAD <span style="font-size:9px;">➤</span></div>
-                <div style="font-size:30px;font-weight:300;letter-spacing:-1px;line-height:1;">27°</div>
-              </div>
-              <div style="font-size:16px;">☁️</div>
+            <div>
+              <div style="font-size:12px;font-weight:600;">BAGHDAD</div>
+              <div style="font-size:34px;font-weight:300;letter-spacing:-1px;line-height:1.05;">26°</div>
             </div>
-            <div style="display:flex;justify-content:space-between;align-items:flex-end;font-size:10px;">
-              <span style="font-weight:600;">CLOUDY</span>
-              <span style="opacity:0.82;">H: 28° L: 16°</span>
+            <div>
+              <div style="font-size:13px;">☁️</div>
+              <div style="font-size:11px;font-weight:600;">CLOUDY</div>
+              <div style="font-size:10px;opacity:0.78;">H: 28° L: 16°</div>
             </div>
           </div>
           <span class="widget-caption">WEATHER</span>
@@ -1139,174 +1100,149 @@
 
         <div class="widget-unit" data-launch="Calendar">
           <div class="widget-box widget-calendar">
-            <div style="display:flex;justify-content:space-between;align-items:center;">
-              <span id="calWidgetDay" style="font-size:10.5px;font-weight:700;color:#ff453a;">SUNDAY</span>
-              <span id="calWidgetNum" style="font-size:26px;font-weight:300;line-height:1;">22</span>
+            <div>
+              <div id="calWidgetDay" style="font-size:10.5px;font-weight:700;color:#ff453a;">SUNDAY</div>
+              <div id="calWidgetNum" style="font-size:30px;font-weight:300;line-height:1.05;">22</div>
             </div>
-            <div style="font-size:10.5px;color:rgba(255,255,255,0.48);">NO EVENTS TODAY</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.48);margin-bottom:6px;">NO EVENTS TODAY</div>
           </div>
           <span class="widget-caption">CALENDAR</span>
         </div>
       </div>
 
-      <!-- 4-Column 1:1 App Grid -->
+      <!-- 4-Column App Grid -->
       <div class="app-grid" id="mainAppGrid">
         <div class="app-item" data-app="Settings">
           <span class="badge-pill">2</span>
-          <div class="app-squircle" style="background:#141417;">
-            <svg viewBox="0 0 48 48">
-              <circle cx="24" cy="24" r="14" fill="none" stroke="#c7c7cc" stroke-width="6" stroke-dasharray="5.2 3.5"/>
-              <circle cx="24" cy="24" r="9.5" fill="none" stroke="#8e8e93" stroke-width="2"/>
-              <circle cx="24" cy="24" r="5" fill="#141417" stroke="#c7c7cc" stroke-width="2"/>
+          <div class="app-squircle" style="background:linear-gradient(180deg,#3a3a3c,#1c1c1e);">
+            <svg width="31" height="31" viewBox="0 0 24 24" fill="none" stroke="#d1d1d6" stroke-width="1.9">
+              <circle cx="12" cy="12" r="3.5"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
             </svg>
           </div>
           <span class="app-label">SETTINGS</span>
         </div>
 
         <div class="app-item" data-app="Photos">
-          <div class="app-squircle" style="background:#121215;">
-            <svg viewBox="0 0 44 44">
-              <ellipse cx="22" cy="12.5" rx="5.2" ry="9.5" fill="#ff9f0a" opacity="0.92"/>
-              <ellipse cx="22" cy="31.5" rx="5.2" ry="9.5" fill="#0a84ff" opacity="0.92"/>
-              <ellipse cx="12.5" cy="22" rx="9.5" ry="5.2" fill="#ff375f" opacity="0.92"/>
-              <ellipse cx="31.5" cy="22" rx="9.5" ry="5.2" fill="#30d158" opacity="0.92"/>
-              <ellipse cx="15.3" cy="15.3" rx="8.5" ry="4.8" transform="rotate(45 15.3 15.3)" fill="#ff453a" opacity="0.88"/>
-              <ellipse cx="28.7" cy="28.7" rx="8.5" ry="4.8" transform="rotate(45 28.7 28.7)" fill="#64d2ff" opacity="0.88"/>
-              <ellipse cx="28.7" cy="15.3" rx="8.5" ry="4.8" transform="rotate(-45 28.7 15.3)" fill="#ffd60a" opacity="0.88"/>
-              <ellipse cx="15.3" cy="28.7" rx="8.5" ry="4.8" transform="rotate(-45 15.3 28.7)" fill="#bf5af2" opacity="0.88"/>
+          <div class="app-squircle">
+            <svg width="33" height="33" viewBox="0 0 36 36">
+              <rect x="15.5" y="3" width="5" height="11" rx="2.5" fill="#ff9500"/>
+              <rect x="15.5" y="22" width="5" height="11" rx="2.5" fill="#007aff"/>
+              <rect x="3" y="15.5" width="11" height="5" rx="2.5" fill="#ff2d55"/>
+              <rect x="22" y="15.5" width="11" height="5" rx="2.5" fill="#34c759"/>
             </svg>
           </div>
           <span class="app-label">PHOTOS</span>
         </div>
 
         <div class="app-item" data-app="WhatsApp">
-          <span class="badge-pill">4</span>
-          <div class="app-squircle" style="background:#121316;">
-            <svg viewBox="0 0 48 48">
-              <path d="M24 7C14.6 7 7 14.3 7 23.3c0 3.1.9 6.1 2.6 8.7L7.5 40.5l8.8-2.1c2.4 1.3 5 2 7.7 2 9.4 0 17-7.3 17-16.3S33.4 7 24 7z" fill="#25d366"/>
-              <path d="M18.6 15.8c-.4-.9-.8-.9-1.2-.9h-1c-.4 0-1 .1-1.5.7-.5.5-1.9 1.9-1.9 4.6s2 5.3 2.3 5.7c.3.4 3.9 6.2 9.6 8.4 4.7 1.8 5.7 1.5 6.7 1.4 1-.1 3.3-1.3 3.7-2.6.5-1.3.5-2.4.3-2.6-.2-.2-.6-.4-1.2-.7-.7-.3-3.9-1.9-4.5-2.1-.6-.2-1-.3-1.5.3-.4.6-1.7 2.1-2.1 2.5-.4.4-.8.5-1.4.2-.7-.3-2.8-1-5.3-3.2-2-1.7-3.3-3.9-3.7-4.6-.4-.7 0-1.1.3-1.4.3-.3.7-.8 1-1.2.3-.4.4-.7.6-1.2.2-.5.1-.9 0-1.2-.2-.3-1.5-3.6-2.1-4.9z" fill="#121316"/>
-            </svg>
+          <span class="badge-pill">3</span>
+          <div class="app-squircle">
+            <div style="width:39px;height:39px;border-radius:13px;background:#25d366;display:grid;place-items:center;">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="#1c1c1e"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </div>
           </div>
           <span class="app-label">WHATSAPP</span>
         </div>
 
         <div class="app-item" data-app="Camera">
-          <div class="app-squircle" style="background:#141417;">
-            <svg viewBox="0 0 48 48">
-              <rect x="6" y="12" width="36" height="26" rx="7" fill="#3a3a3e"/>
-              <rect x="17" y="8" width="14" height="6" rx="3" fill="#48484d"/>
-              <circle cx="24" cy="25" r="10.5" fill="#1c1c20" stroke="#8e8e93" stroke-width="2"/>
-              <circle cx="24" cy="25" r="6.5" fill="#0d1b2a" stroke="#48cae4" stroke-width="1.5"/>
-              <circle cx="21.5" cy="22.5" r="2.2" fill="#90e0ef" opacity="0.85"/>
-              <circle cx="36.5" cy="17" r="2" fill="#ffffff" opacity="0.7"/>
+          <div class="app-squircle" style="background:linear-gradient(180deg,#2c2c2e,#1c1c1e);">
+            <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#d1d1d6" stroke-width="1.9">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+              <circle cx="12" cy="13" r="4"/>
             </svg>
           </div>
           <span class="app-label">CAMERA</span>
         </div>
 
         <div class="app-item" data-app="App Store">
-          <div class="app-squircle" style="background:#111216;">
-            <svg viewBox="0 0 44 44" fill="none" stroke="#0a84ff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="22" y1="6" x2="10" y2="36"/>
-              <line x1="22" y1="6" x2="34" y2="36"/>
-              <line x1="11" y1="28" x2="35" y2="28"/>
+          <div class="app-squircle">
+            <svg width="31" height="31" viewBox="0 0 24 24" fill="none" stroke="#0a84ff" stroke-width="2.5" stroke-linecap="round">
+              <path d="M12 4L5 18M12 4l7 14M6.5 14h11"/>
             </svg>
           </div>
           <span class="app-label">APP STORE</span>
         </div>
 
-        <div class="app-item" data-app="Games">
-          <div class="app-squircle" style="background:#26262a;">
-            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:4px;padding:6px;width:44px;height:44px;">
-              <div style="border-radius:5px;background:#0a84ff;display:grid;place-items:center;font-size:10px;">◆</div>
-              <div style="border-radius:5px;background:#ff375f;display:grid;place-items:center;font-size:10px;">▲</div>
-              <div style="border-radius:5px;background:#30d158;display:grid;place-items:center;font-size:10px;">●</div>
-              <div style="border-radius:5px;background:#ff9f0a;display:grid;place-items:center;font-size:10px;">■</div>
-            </div>
-          </div>
-          <span class="app-label">GAMES</span>
-        </div>
-
         <div class="app-item" data-app="Notes">
-          <div class="app-squircle" style="background:#1c1c1e;">
+          <div class="app-squircle">
             <div style="width:100%;height:100%;display:flex;flex-direction:column;">
-              <div style="height:15px;background:linear-gradient(180deg,#ffd60a,#ff9f0a);width:100%;"></div>
+              <div style="height:14px;background:linear-gradient(180deg,#ffd60a,#ff9f0a);width:100%;"></div>
               <div style="flex:1;padding:6px 8px;display:flex;flex-direction:column;gap:5px;justify-content:center;">
-                <div style="height:2px;background:#545458;width:100%;"></div>
-                <div style="height:2px;background:#545458;width:82%;"></div>
+                <div style="height:2px;background:#48484a;width:100%;"></div>
+                <div style="height:2px;background:#48484a;width:82%;"></div>
               </div>
             </div>
           </div>
           <span class="app-label">NOTES</span>
         </div>
 
-        <div class="app-item" data-app="Google">
-          <div class="app-squircle" style="background:#141418;">
-            <svg viewBox="0 0 36 36">
-              <path d="M31.5 18.3c0-1.1-.1-2-.3-2.9H18v5.5h7.8c-.3 1.9-1.5 3.5-3.2 4.6v3.8h5.1c3-2.8 3.8-6.9 3.8-11z" fill="#4285f4"/>
-              <path d="M18 32c4.2 0 7.8-1.4 10.4-3.8l-5.1-3.8c-1.4 1-3.2 1.6-5.3 1.6-4.1 0-7.5-2.7-8.8-6.4H3.9v3.9C6.5 28.9 11.8 32 18 32z" fill="#34a853"/>
-              <path d="M9.2 19.7c-.3-1-.5-2.1-.5-3.2s.2-2.2.5-3.2V9.4H3.9C2.7 11.8 2 14.5 2 17.5s.7 5.7 1.9 8.1l5.3-3.9z" fill="#fbbc05"/>
-              <path d="M18 7.5c2.3 0 4.4.8 6 2.4l4.5-4.5C25.8 2.9 22.2 1.5 18 1.5 11.8 1.5 6.5 4.6 3.9 9.4l5.3 3.9c1.3-3.7 4.7-5.8 8.8-5.8z" fill="#ea4335"/>
+        <div class="app-item" data-app="Calculator">
+          <div class="app-squircle">
+            <svg width="29" height="29" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="7.5" height="7.5" rx="2" fill="#636366"/>
+              <rect x="13.5" y="3" width="7.5" height="7.5" rx="2" fill="#ff9f0a"/>
+              <rect x="3" y="13.5" width="7.5" height="7.5" rx="2" fill="#3a3a3c"/>
+              <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2" fill="#3a3a3c"/>
             </svg>
           </div>
-          <span class="app-label">GOOGLE</span>
+          <span class="app-label">CALCULATOR</span>
+        </div>
+
+        <div class="app-item" data-app="Clock">
+          <div class="app-squircle">
+            <svg width="36" height="36" viewBox="0 0 44 44">
+              <circle cx="22" cy="22" r="18" fill="#2c2c2e" stroke="#636366" stroke-width="1"/>
+              <line x1="22" y1="22" x2="22" y2="11" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+              <line x1="22" y1="22" x2="30" y2="22" stroke="#ff9f0a" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="app-label">CLOCK</span>
         </div>
 
         <div class="app-item" data-app="Instagram">
           <span class="badge-pill">2</span>
-          <div class="app-squircle" style="background:#141417;">
-            <svg viewBox="0 0 40 40" fill="none">
-              <defs>
-                <linearGradient id="igRing" x1="4" y1="36" x2="36" y2="4" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="#ffd60a"/>
-                  <stop offset="45%" stop-color="#ff375f"/>
-                  <stop offset="100%" stop-color="#5e5ce6"/>
-                </linearGradient>
-              </defs>
-              <rect x="5" y="5" width="30" height="30" rx="9" stroke="url(#igRing)" stroke-width="3.2"/>
-              <circle cx="20" cy="20" r="7.2" stroke="url(#igRing)" stroke-width="3.2"/>
-              <circle cx="29.5" cy="10.5" r="2.1" fill="url(#igRing)"/>
+          <div class="app-squircle">
+            <svg width="29" height="29" viewBox="0 0 24 24" fill="none" stroke="url(#igGrad)" stroke-width="2.3">
+              <defs><linearGradient id="igGrad" x1="0" y1="24" x2="24" y2="0"><stop offset="0%" stop-color="#feda75"/><stop offset="50%" stop-color="#d62976"/><stop offset="100%" stop-color="#4f5bd5"/></linearGradient></defs>
+              <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="#d62976"/>
             </svg>
           </div>
           <span class="app-label">INSTAGRAM</span>
         </div>
 
         <div class="app-item" data-app="TikTok">
-          <div class="app-squircle" style="background:#111114;">
-            <svg viewBox="0 0 40 40">
-              <path d="M24 8v16.5a5.5 5.5 0 1 1-4.2-5.35" fill="none" stroke="#25f4ee" stroke-width="3.2" stroke-linecap="round" transform="translate(-1.5, -1.2)"/>
-              <path d="M24 8v16.5a5.5 5.5 0 1 1-4.2-5.35" fill="none" stroke="#fe2c55" stroke-width="3.2" stroke-linecap="round" transform="translate(1.5, 1.2)"/>
-              <path d="M24 8v16.5a5.5 5.5 0 1 1-4.2-5.35" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
-              <path d="M24 8c1.2 4.2 4.3 6.8 8.5 7.2" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round"/>
+          <div class="app-squircle" style="background:#111113;">
+            <svg width="27" height="27" viewBox="0 0 24 24" fill="#fff">
+              <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
             </svg>
           </div>
           <span class="app-label">TIKTOK</span>
         </div>
 
         <div class="app-item" data-app="YouTube">
-          <span class="badge-pill">88</span>
-          <div class="app-squircle" style="background:#141417;">
-            <div style="width:42px;height:30px;border-radius:9px;background:#ff0033;display:grid;place-items:center;">
-              <div style="width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:11px solid #ffffff;margin-left:2px;"></div>
+          <span class="badge-pill">87</span>
+          <div class="app-squircle">
+            <div style="width:37px;height:26px;border-radius:8px;background:#ff0033;display:grid;place-items:center;">
+              <div style="width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:9px solid #fff;margin-left:2px;"></div>
             </div>
           </div>
           <span class="app-label">YOUTUBE</span>
         </div>
 
-        <div class="app-item" data-app="JusTalk">
-          <div class="app-squircle" style="background:#141418;">
-            <svg viewBox="0 0 44 44">
-              <path d="M8 15c0-4.4 3.6-8 8-8h12c4.4 0 8 3.6 8 8v8c0 4.4-3.6 8-8 8h-8l-7 6v-6.5C10 29 8 26.2 8 23v-8z" fill="#ff3b7f"/>
-              <circle cx="17" cy="18" r="2.3" fill="#141418"/>
-              <circle cx="25" cy="18" r="2.3" fill="#141418"/>
-              <path d="M17.5 23.5c1.8 2 5.2 2 7 0" fill="none" stroke="#141418" stroke-width="2.2" stroke-linecap="round"/>
+        <div class="app-item" data-app="Reminders">
+          <div class="app-squircle">
+            <svg width="29" height="29" viewBox="0 0 24 24" fill="none">
+              <circle cx="5" cy="7" r="2" fill="#0a84ff"/><line x1="10" y1="7" x2="20" y2="7" stroke="#8e8e93" stroke-width="2.2" stroke-linecap="round"/>
+              <circle cx="5" cy="12" r="2" fill="#ff453a"/><line x1="10" y1="12" x2="20" y2="12" stroke="#8e8e93" stroke-width="2.2" stroke-linecap="round"/>
+              <circle cx="5" cy="17" r="2" fill="#ff9f0a"/><line x1="10" y1="17" x2="20" y2="17" stroke="#8e8e93" stroke-width="2.2" stroke-linecap="round"/>
             </svg>
           </div>
-          <span class="app-label">JUSTALK</span>
+          <span class="app-label">REMINDERS</span>
         </div>
       </div>
 
-      <!-- Search Pill + Page Dots -->
+      <!-- Search Pill + Page Dots + Clear Spacing Before Dock -->
       <div class="home-middle-spacer">
         <button class="search-pill-btn" onclick="openSpotlight()">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6">
@@ -1320,57 +1256,45 @@
         </div>
       </div>
 
-      <!-- Translucent Floating Dock (Strict 1:1 Icons) -->
+      <!-- Translucent Floating Dock -->
       <div id="dock">
         <div class="app-item" data-app="Phone">
-          <div class="app-squircle" style="background:#141417;">
-            <svg viewBox="0 0 36 36" fill="#30d158">
-              <path d="M27.5 22.8l-3.4-.9a1.8 1.8 0 0 0-1.7.5l-1.9 1.9a14.2 14.2 0 0 1-6.8-6.8l1.9-1.9a1.8 1.8 0 0 0 .5-1.7l-.9-3.4A1.8 1.8 0 0 0 12.3 9H9.2A2.2 2.2 0 0 0 7 11.4 19.6 19.6 0 0 0 24.6 29a2.2 2.2 0 0 0 2.4-2.2v-2.2a1.8 1.8 0 0 0-1.5-1.8z"/>
+          <div class="app-squircle">
+            <svg width="27" height="27" viewBox="0 0 24 24" fill="#30d158">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
             </svg>
           </div>
         </div>
 
         <div class="app-item" data-app="Safari">
-          <div class="app-squircle" style="background:#121318;">
-            <svg viewBox="0 0 48 48">
-              <circle cx="24" cy="24" r="20" fill="#0a84ff"/>
-              <circle cx="24" cy="24" r="17.5" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1" stroke-dasharray="1.5 3.5"/>
-              <polygon points="24,10 27,24 21,24" transform="rotate(42 24 24)" fill="#ff3b30"/>
-              <polygon points="24,38 27,24 21,24" transform="rotate(42 24 24)" fill="#ffffff"/>
-              <circle cx="24" cy="24" r="2" fill="#0a84ff"/>
+          <div class="app-squircle">
+            <svg width="36" height="36" viewBox="0 0 42 42">
+              <circle cx="21" cy="21" r="18" fill="#0a84ff"/>
+              <polygon points="21,8 24,21 21,34 18,21" transform="rotate(42 21 21)" fill="#fff"/>
             </svg>
           </div>
         </div>
 
         <div class="app-item" data-app="Messages">
           <span class="badge-pill">1</span>
-          <div class="app-squircle" style="background:#141417;">
-            <svg viewBox="0 0 38 38" fill="#30d158">
-              <path d="M19 5C10.7 5 4 10.4 4 17c0 3.2 1.6 6.1 4.2 8.3-.3 2.1-1.4 4.1-1.5 4.3-.2.4.1.9.6 1 2.9 0 5.4-1.1 7-2 1.5.4 3.1.6 4.7.6 8.3 0 15-5.4 15-12S27.3 5 19 5z"/>
+          <div class="app-squircle">
+            <svg width="27" height="27" viewBox="0 0 24 24" fill="#30d158">
+              <path d="M12 3c-5.5 0-10 3.58-10 8 0 2.14 1.06 4.08 2.8 5.52-.23 1.44-.95 2.74-1.02 2.86a.5.5 0 0 0 .44.74c1.94 0 3.63-.77 4.65-1.36 1.01.24 2.06.37 3.13.37 5.5 0 10-3.58 10-8s-4.5-8-10-8z"/>
             </svg>
           </div>
         </div>
 
-        <div class="app-item" data-app="Shortcuts">
-          <div class="app-squircle" style="background:#141418;">
-            <svg viewBox="0 0 40 40">
-              <defs>
-                <linearGradient id="scGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#ff375f"/>
-                  <stop offset="50%" stop-color="#bf5af2"/>
-                  <stop offset="100%" stop-color="#5e5ce6"/>
-                </linearGradient>
-              </defs>
-              <polygon points="10,7 25,7 19,17 4,17" fill="url(#scGrad)" opacity="0.9"/>
-              <polygon points="15,15 30,15 24,25 9,25" fill="url(#scGrad)"/>
-              <polygon points="20,23 35,23 29,33 14,33" fill="url(#scGrad)" opacity="0.85"/>
+        <div class="app-item" data-app="Music">
+          <div class="app-squircle">
+            <svg width="25" height="25" viewBox="0 0 24 24" fill="#ff375f">
+              <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
             </svg>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Page 2: App Library (Fixed 1:1 Icons & Squircle Shapes) -->
+    <!-- Page 2: App Library (Header Line, Real Icons, 4 Apps Per Folder) -->
     <section class="screen-page" id="appLibraryPage">
       <div class="lib-header-wrap">
         <div class="lib-title-row">
@@ -1391,12 +1315,12 @@
       <div class="lib-folders-grid" id="libFoldersGrid">
         <div class="lib-folder-card">
           <div class="lib-folder-quad" id="folderQuad0"></div>
-          <div class="lib-folder-name">GAMES</div>
+          <div class="lib-folder-name">SUGGESTIONS</div>
         </div>
 
         <div class="lib-folder-card">
           <div class="lib-folder-quad" id="folderQuad1"></div>
-          <div class="lib-folder-name">GOOGLE & AI</div>
+          <div class="lib-folder-name">RECENTLY ADDED</div>
         </div>
 
         <div class="lib-folder-card">
@@ -1412,7 +1336,7 @@
     </section>
   </main>
 
-  <!-- iOS 18 Style App Open & Close Stage -->
+  <!-- Instant App Stage (No Open or Close Animation) -->
   <section id="appStage">
     <div id="appLiveBody">
       <header class="app-nav-header">
@@ -1428,7 +1352,7 @@
   </section>
 
   <!-- =========================================================
-       CONTROL CENTER
+       CONTROL CENTER (Shrunk in Center, 1:1 Squares, Bigger Icons)
        ========================================================= -->
   <section id="controlCenter">
     <div>
@@ -1455,10 +1379,10 @@
           </svg>
         </div>
         <div style="display:flex;align-items:center;gap:5px;">
-          <span>⏰ 45%</span>
+          <span>⏰ 62%</span>
           <svg width="24" height="12" viewBox="0 0 25 12" fill="none">
             <rect x="0.5" y="0.5" width="21" height="11" rx="3" stroke="currentColor" stroke-opacity="0.45"/>
-            <rect x="2" y="2" width="11" height="8" rx="1.8" fill="currentColor"/>
+            <rect x="2" y="2" width="14.5" height="8" rx="1.8" fill="currentColor"/>
             <path d="M23 4v4a1.5 1.5 0 0 0 0-4z" fill="currentColor" fill-opacity="0.5"/>
           </svg>
         </div>
@@ -1467,6 +1391,7 @@
 
     <div class="cc-center-cluster">
       <div class="cc-grid-wrap">
+        <!-- Top-Left 2x2 Connectivity Cluster -->
         <div class="cc-conn-box cc-tile" data-stagger="2">
           <button class="cc-conn-btn" onclick="this.classList.toggle('on-orange')">
             <svg width="27" height="27" viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
@@ -1493,6 +1418,7 @@
           </div>
         </div>
 
+        <!-- Top-Right 2x2 Now Playing Module -->
         <div class="cc-media-box cc-tile" data-stagger="3">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;">
             <div style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,0.14);"></div>
@@ -1508,6 +1434,7 @@
           </div>
         </div>
 
+        <!-- Identical 1:1 Square Toggles Cluster -->
         <div class="cc-mid-squares cc-tile" data-stagger="4">
           <button class="cc-square-toggle active-white" onclick="this.classList.toggle('active-white')">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1.2" fill="currentColor"/></svg>
@@ -1523,6 +1450,7 @@
           </button>
         </div>
 
+        <!-- Vertical Brightness & Volume Sliders -->
         <div class="cc-slider-pill cc-tile" data-stagger="5" id="brightnessSlider">
           <div class="cc-slider-fill" id="brightnessFill" style="height:86%;"></div>
           <div class="cc-slider-icon">
@@ -1537,6 +1465,7 @@
           </div>
         </div>
 
+        <!-- Row 4: Recognize Music (1 Height x 2 Width) + 1:1 Screen Record + 1:1 Rotation Lock -->
         <button class="cc-shazam-box cc-tile" data-stagger="7" onclick="this.classList.toggle('active-white')">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
           <div style="text-align:left;line-height:1.15;">
@@ -1553,6 +1482,7 @@
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="7" y="11" width="10" height="8" rx="2"/><path d="M9 11V8a3 3 0 0 1 6 0v3"/><path d="M21 12a9 9 0 1 1-3-6.7"/></svg>
         </button>
 
+        <!-- Row 5: Focus & AIO Downloader Squares -->
         <button class="cc-bottom-square cc-tile" data-stagger="10" onclick="this.classList.toggle('active-white')">
           <div class="cc-badge-square">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -1569,7 +1499,7 @@
       </div>
     </div>
 
-    <div style="height:6px;"></div>
+    <div style="height:8px;"></div>
   </section>
 
   <!-- =========================================================
@@ -1578,7 +1508,7 @@
   <section id="notificationCenter">
     <div class="nc-clock-block" id="ncClockBlock">
       <div id="ncDate">SUNDAY, NOVEMBER 22</div>
-      <div id="ncTime">13:57</div>
+      <div id="ncTime">12:55</div>
     </div>
 
     <div class="nc-notif-list">
@@ -1586,7 +1516,7 @@
         <div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted);margin-bottom:4px;">
           <span><b>WHATSAPP</b></span><span>2M AGO</span>
         </div>
-        <div style="font-size:13px;font-weight:600;">4 UNREAD MESSAGES</div>
+        <div style="font-size:13px;font-weight:600;">3 UNREAD MESSAGES</div>
         <div style="font-size:12px;opacity:0.84;margin-top:2px;">TAP TO VIEW WHATSAPP STATUS ON LUMEOS 28.2.</div>
       </div>
 
@@ -1618,12 +1548,12 @@
   </section>
 
   <!-- =========================================================
-       LOCK SCREEN (Exact 1:1 Finger Tracking)
+       LOCK SCREEN (Instant Unlock - No App Reveal Animation)
        ========================================================= -->
   <section id="lockScreen">
     <div class="ls-clock-wrap" id="lsClockWrap">
       <div id="lsDate">SUNDAY, NOVEMBER 22</div>
-      <div id="lsTime">13:57</div>
+      <div id="lsTime">12:55</div>
     </div>
 
     <div class="ls-cards">
@@ -1631,8 +1561,8 @@
         <div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted);margin-bottom:4px;">
           <span><b>WHATSAPP</b></span><span>2M AGO</span>
         </div>
-        <div style="font-size:13px;font-weight:600;">4 UNREAD MESSAGES</div>
-        <div style="font-size:12px;opacity:0.84;margin-top:2px;">DRAG UP TO UNLOCK LUMEOS 28.2.</div>
+        <div style="font-size:13px;font-weight:600;">3 UNREAD MESSAGES</div>
+        <div style="font-size:12px;opacity:0.84;margin-top:2px;">SWIPE UP TO UNLOCK LUMEOS 28.2.</div>
       </div>
 
       <div class="ls-card" onclick="unlockWithHarmony()">
@@ -1640,7 +1570,7 @@
           <span><b>LUMEOS 28.2</b></span><span>JUST NOW</span>
         </div>
         <div style="font-size:13px;font-weight:600;">LC PHONE PURA WIDE (1ST GEN.)</div>
-        <div style="font-size:12px;opacity:0.84;margin-top:2px;">DRAG UP TO UNLOCK.</div>
+        <div style="font-size:12px;opacity:0.84;margin-top:2px;">SWIPE UP TO UNLOCK.</div>
       </div>
     </div>
 
@@ -1653,7 +1583,7 @@
       </button>
     </div>
 
-    <div class="ls-swipe-hint">↑ DRAG UP TO UNLOCK</div>
+    <div class="ls-swipe-hint">↑ SWIPE UP TO UNLOCK</div>
   </section>
 
   <!-- =========================================================
@@ -1676,26 +1606,10 @@
     <div id="spotlightList" style="margin-top:16px;background:rgba(255,255,255,0.12);border-radius:20px;overflow:hidden;"></div>
   </section>
 
-  <!-- 3 Android Navigation Buttons (Bigger, Spacious, Seamless Wallpaper, Spam-Ready) -->
-  <nav id="androidNavBar" aria-label="Android Navigation">
-    <button class="android-nav-btn" id="btnBack" aria-label="BACK">
-      <svg viewBox="0 0 24 24">
-        <polygon points="19 4 5 12 19 20 19 4" fill="currentColor"/>
-      </svg>
-    </button>
-
-    <button class="android-nav-btn" id="btnHome" aria-label="HOME">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <circle cx="12" cy="12" r="7.5"/>
-      </svg>
-    </button>
-
-    <button class="android-nav-btn" id="btnRecents" aria-label="RECENTS">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <rect x="5" y="5" width="14" height="14" rx="2.5"/>
-      </svg>
-    </button>
-  </nav>
+  <!-- Bottom Home Bar -->
+  <div id="homeBarZone">
+    <div id="homeBarPill"></div>
+  </div>
 </div>
 
 <script>
@@ -1703,6 +1617,7 @@
 
 const $ = id => document.getElementById(id);
 
+/* Keep Numbers Intact (e.g. 68, 68500, 68.5) & Add Spaces Only Between Numbers and Normal Words */
 function formatOSString(raw) {
   const str = String(raw).toUpperCase();
   return str
@@ -1715,34 +1630,33 @@ let activeApp = null;
 let homePageIndex = 0;
 let ccProgress = 0;
 let ncProgress = 0;
-let lockDragProgress = 0;
 let isLocked = true;
 let flashlightOn = false;
 let mediaPlaying = false;
 let serialVisible = false;
 let dialedDigits = "";
-let recentApps = ["Settings", "Messages", "Safari", "Shortcuts"];
+let recentApps = ["Settings", "Messages", "Safari", "Calculator"];
 
 const APP_LIST = [
   "Settings", "Photos", "WhatsApp", "Camera",
-  "App Store", "Games", "Notes", "Google",
-  "Instagram", "TikTok", "YouTube", "JusTalk",
-  "Phone", "Safari", "Messages", "Shortcuts", "Weather", "Calendar"
+  "App Store", "Notes", "Calculator", "Clock",
+  "Instagram", "TikTok", "YouTube", "Reminders",
+  "Phone", "Safari", "Messages", "Music", "Weather", "Calendar"
 ];
 
 const COMING_SOON_APPS = [
   "YouTube", "TikTok", "Instagram", "App Store",
-  "WhatsApp", "Games", "JusTalk", "Shortcuts", "Google"
+  "WhatsApp", "Music", "Clock", "Reminders"
 ];
 
 const FOLDER_GROUPS = [
-  ["Games", "WhatsApp", "YouTube", "Camera"],
-  ["TikTok", "Instagram", "Notes", "Google"],
-  ["Phone", "Messages", "Safari", "JusTalk"],
-  ["App Store", "Settings", "Weather", "Calendar"]
+  ["Settings", "WhatsApp", "YouTube", "Camera"],
+  ["TikTok", "Instagram", "Notes", "App Store"],
+  ["Phone", "Messages", "Safari", "Music"],
+  ["Calculator", "Clock", "Weather", "Reminders"]
 ];
 
-/* Populate App Library Folders with Fixed 1:1 Squircle Icons */
+/* Populate App Library Folders with Real Home Screen Icons (4 Apps Each) */
 function hydrateAppLibraryFolders() {
   FOLDER_GROUPS.forEach((group, fIdx) => {
     const quad = $(`folderQuad${fIdx}`);
@@ -1750,7 +1664,7 @@ function hydrateAppLibraryFolders() {
     quad.innerHTML = group.map(appName => {
       const homeIcon = document.querySelector(`#mainAppGrid .app-item[data-app="${appName}"] .app-squircle, #dock .app-item[data-app="${appName}"] .app-squircle`);
       const inner = homeIcon ? homeIcon.innerHTML : `<span style="font-size:18px;">✦</span>`;
-      const bg = homeIcon ? getComputedStyle(homeIcon).background : "#141417";
+      const bg = homeIcon ? getComputedStyle(homeIcon).background : "#1c1c1e";
       return `
         <div class="lib-quad-item app-item" data-app="${appName}">
           <div class="app-squircle" style="background:${bg};">${inner}</div>
@@ -1780,54 +1694,29 @@ syncSystemClock();
 setInterval(syncSystemClock, 1000);
 
 /* =========================================================================
-   EXACT 1:1 FINGER-TRACKING UNLOCK & APP REVEAL
+   LOCK SCREEN -> INSTANT UNLOCK (NO APP SHOW ANIMATION)
    ========================================================================= */
-function applyHomeUnlockReveal(p, animate) {
-  const clamped = Math.max(0, Math.min(1, p));
-  const home = $("homeScreen");
-  const pageOffset = homePageIndex === 1 ? -100 : 0;
-  const scale = 0.9 + clamped * 0.1;
-  const blur = ((1 - clamped) * 10).toFixed(1);
-  const opacity = (0.15 + clamped * 0.85).toFixed(3);
-
-  home.style.transition = animate
-    ? "transform 0.42s var(--ios18-ease), opacity 0.36s ease, filter 0.36s ease"
-    : "none";
-  home.style.transform = `translate3d(${pageOffset}vw, 0, 0) scale(${scale.toFixed(3)})`;
-  home.style.filter = `blur(${blur}px)`;
-  home.style.opacity = opacity;
-}
-
 function setLockSwipeProgress(p) {
-  lockDragProgress = Math.max(0, Math.min(1, p));
+  const clamped = Math.max(0, Math.min(1, p));
   const ls = $("lockScreen");
-  ls.style.transition = "none";
   ls.style.transformOrigin = "center center";
-  ls.style.transform = `translate3d(0, ${(-lockDragProgress * 100).toFixed(1)}%, 0)`;
-  ls.style.opacity = (1 - lockDragProgress).toFixed(3);
-  applyHomeUnlockReveal(lockDragProgress, false);
+  ls.style.transform = `translate3d(0, ${(-clamped * 100).toFixed(1)}%, 0)`;
+  ls.style.opacity = (1 - clamped).toFixed(3);
 }
 
 function unlockWithHarmony(launchAfterApp) {
   isLocked = false;
-  lockDragProgress = 1;
   const ls = $("lockScreen");
   ls.classList.add("unlocked");
   ls.style.transform = "";
   ls.style.opacity = "";
 
-  applyHomeUnlockReveal(1, true);
-  setTimeout(() => {
-    const home = $("homeScreen");
-    home.style.transition = "";
-    home.style.transform = homePageIndex === 1 ? "translateX(-100vw)" : "";
-    home.style.filter = "";
-    home.style.opacity = "";
-  }, 420);
+  const home = $("homeScreen");
+  home.style.transform = homePageIndex === 1 ? "translateX(-100vw)" : "";
+  home.style.filter = "";
+  home.style.opacity = "1";
 
-  if (launchAfterApp) {
-    setTimeout(() => morphOpenApp(launchAfterApp), 140);
-  }
+  if (launchAfterApp) morphOpenApp(launchAfterApp);
 }
 
 function lockPhone() {
@@ -1836,13 +1725,10 @@ function lockPhone() {
   forceCloseApp();
   closeAppSwitcher();
   isLocked = true;
-  lockDragProgress = 0;
   const ls = $("lockScreen");
   ls.classList.remove("unlocked");
-  ls.style.transition = "none";
-  ls.style.transform = "translate3d(0, 0, 0)";
-  ls.style.opacity = "1";
-  applyHomeUnlockReveal(0, false);
+  ls.style.transform = "";
+  ls.style.opacity = "";
 }
 
 /* Home Screen Pager */
@@ -1871,25 +1757,8 @@ function filterLibraryApps(q) {
 }
 
 /* =========================================================================
-   iOS 18 APP OPEN & CLOSE + OTHER APPS SHRINK TO CENTER WITH BLUR
+   INSTANT APP OPEN & CLOSE (NO OPEN OR CLOSE ANIMATION)
    ========================================================================= */
-function setOtherHomeItemsShrunk(shrunk, pressedEl) {
-  const targets = document.querySelectorAll("#primaryHomePage .app-item, #primaryHomePage .widget-unit, #primaryHomePage .home-middle-spacer, #primaryHomePage #dock");
-  targets.forEach(el => {
-    const isPressed = pressedEl && (el === pressedEl || el.contains(pressedEl));
-    if (shrunk && !isPressed) {
-      el.style.transformOrigin = "center center";
-      el.style.transform = "scale(0.68)";
-      el.style.filter = "blur(7px) brightness(0.76)";
-      el.style.opacity = "0.55";
-    } else {
-      el.style.transform = "";
-      el.style.filter = "";
-      el.style.opacity = "";
-    }
-  });
-}
-
 function bindAppPressInteractions() {
   document.querySelectorAll(".app-item").forEach(item => {
     let sx = 0, sy = 0, moved = false;
@@ -1915,6 +1784,7 @@ function bindAppPressInteractions() {
   });
 
   document.querySelectorAll(".widget-unit").forEach(unit => {
+    const box = unit.querySelector(".widget-box");
     let sx = 0, sy = 0, moved = false;
     unit.addEventListener("pointerdown", e => {
       if (isLocked) return;
@@ -1928,7 +1798,7 @@ function bindAppPressInteractions() {
     unit.addEventListener("pointerup", e => {
       if (!moved && !isLocked) {
         e.stopPropagation();
-        morphOpenApp(unit.getAttribute("data-launch"), unit);
+        morphOpenApp(unit.getAttribute("data-launch"), box);
       }
     });
   });
@@ -1937,7 +1807,7 @@ function bindAppPressInteractions() {
 hydrateAppLibraryFolders();
 bindAppPressInteractions();
 
-function morphOpenApp(name, pressedEl) {
+function morphOpenApp(name) {
   closeSpotlight();
   closeAppSwitcher();
   activeApp = name;
@@ -1949,60 +1819,34 @@ function morphOpenApp(name, pressedEl) {
 
   stage.classList.toggle("light-theme", isLight);
   $("statusBar").classList.toggle("light-mode", isLight);
-  $("androidNavBar").classList.toggle("light-nav", isLight);
+  $("homeBarPill").classList.toggle("dark-pill", isLight);
 
   $("stageTitle").textContent = formatOSString(name);
   $("stageContent").innerHTML = buildAppHTML(name);
 
-  setOtherHomeItemsShrunk(true, pressedEl);
-
   stage.style.display = "flex";
-  stage.style.transform = "scale(0.24)";
-  stage.style.opacity = "0";
-  stage.style.borderRadius = "44px";
-  stage.getBoundingClientRect();
-
-  requestAnimationFrame(() => {
-    stage.classList.add("open");
-    stage.style.transform = "scale(1)";
-    stage.style.opacity = "1";
-    stage.style.borderRadius = "0px";
-  });
+  stage.style.top = "0px";
+  stage.style.left = "0px";
+  stage.style.width = "100vw";
+  stage.style.height = "100dvh";
+  stage.style.transform = "none";
+  stage.style.borderRadius = "0px";
+  stage.style.opacity = "1";
 }
 
 function morphCloseApp() {
   const stage = $("appStage");
-  if (!activeApp && !stage.classList.contains("open")) return;
-
-  stage.classList.remove("open");
-  stage.style.transform = "scale(0.24)";
-  stage.style.opacity = "0";
-  stage.style.borderRadius = "44px";
-
-  setOtherHomeItemsShrunk(false, null);
-
+  stage.style.display = "none";
+  stage.style.opacity = "1";
+  stage.style.transform = "none";
+  stage.style.borderRadius = "0px";
+  activeApp = null;
   $("statusBar").classList.remove("light-mode");
-  $("androidNavBar").classList.remove("light-nav");
-
-  setTimeout(() => {
-    if (!stage.classList.contains("open")) {
-      stage.style.display = "none";
-    }
-    activeApp = null;
-  }, 360);
+  $("homeBarPill").classList.remove("dark-pill");
 }
 
 function forceCloseApp() {
-  const stage = $("appStage");
-  stage.classList.remove("open");
-  stage.style.display = "none";
-  stage.style.opacity = "0";
-  stage.style.transform = "scale(0.24)";
-  stage.style.borderRadius = "44px";
-  setOtherHomeItemsShrunk(false, null);
-  activeApp = null;
-  $("statusBar").classList.remove("light-mode");
-  $("androidNavBar").classList.remove("light-nav");
+  morphCloseApp();
 }
 
 /* =========================================================================
@@ -2171,75 +2015,13 @@ function handleSwitcherCardTap(idx) {
 function getAppEmoji(name) {
   const map = {
     Settings: "⚙️", Photos: "🌸", WhatsApp: "💬", Camera: "📷",
-    "App Store": "🅰️", Games: "🎮", Notes: "📝", Google: "🔍",
-    Instagram: "📸", TikTok: "🎵", YouTube: "▶️", JusTalk: "💕",
-    Phone: "📞", Safari: "🧭", Messages: "💚", Shortcuts: "⚡",
+    "App Store": "🅰️", Notes: "📝", Calculator: "🧮", Clock: "⏰",
+    Instagram: "📸", TikTok: "🎵", YouTube: "▶️", Reminders: "✅",
+    Phone: "📞", Safari: "🧭", Messages: "💚", Music: "🎧",
     Weather: "☁️", Calendar: "📅"
   };
   return map[name] || "✦";
 }
-
-/* =========================================================================
-   3 ANDROID BUTTONS ACTIONS (Spam-Ready via pointerdown)
-   ========================================================================= */
-function pulseNavBtn(btn) {
-  if (!btn) return;
-  btn.classList.add("pressed");
-  clearTimeout(btn._pulseTimer);
-  btn._pulseTimer = setTimeout(() => btn.classList.remove("pressed"), 110);
-}
-
-function androidBackAction() {
-  if (isLocked) return;
-  if ($("appSwitcher").classList.contains("open")) { closeAppSwitcher(); return; }
-  if ($("spotlightOverlay").classList.contains("open")) { closeSpotlight(); return; }
-  if (ccProgress > 0.2) { snapCloseCC(); return; }
-  if (ncProgress > 0.2) { snapCloseNC(); return; }
-  if (activeApp) { morphCloseApp(); return; }
-  if (homePageIndex === 1) { setHomePage(0); }
-}
-
-function androidHomeAction() {
-  if (isLocked) return;
-  if ($("appSwitcher").classList.contains("open")) closeAppSwitcher();
-  if ($("spotlightOverlay").classList.contains("open")) closeSpotlight();
-  if (ccProgress > 0.02) snapCloseCC();
-  if (ncProgress > 0.02) snapCloseNC();
-  if (activeApp) morphCloseApp();
-  if (homePageIndex !== 0) setHomePage(0);
-}
-
-function androidRecentsAction() {
-  if (isLocked) return;
-  if (ccProgress > 0.02) snapCloseCC();
-  if (ncProgress > 0.02) snapCloseNC();
-  if ($("appSwitcher").classList.contains("open")) {
-    closeAppSwitcher();
-  } else {
-    openAppSwitcher();
-  }
-}
-
-$("btnBack").addEventListener("pointerdown", e => {
-  e.preventDefault();
-  e.stopPropagation();
-  pulseNavBtn($("btnBack"));
-  androidBackAction();
-});
-
-$("btnHome").addEventListener("pointerdown", e => {
-  e.preventDefault();
-  e.stopPropagation();
-  pulseNavBtn($("btnHome"));
-  androidHomeAction();
-});
-
-$("btnRecents").addEventListener("pointerdown", e => {
-  e.preventDefault();
-  e.stopPropagation();
-  pulseNavBtn($("btnRecents"));
-  androidRecentsAction();
-});
 
 /* =========================================================================
    MASTER 1:1 POINTER / TOUCH GESTURE ENGINE
@@ -2249,7 +2031,7 @@ let gStartX = 0, gStartY = 0, gLastY = 0, gLastTime = 0, gVelocityY = 0;
 const osEl = $("os");
 
 osEl.addEventListener("pointerdown", e => {
-  if (e.target.closest(".cc-slider-pill") || e.target.closest("#androidNavBar")) return;
+  if (e.target.closest(".cc-slider-pill")) return;
 
   gStartX = e.clientX;
   gStartY = e.clientY;
@@ -2259,9 +2041,12 @@ osEl.addEventListener("pointerdown", e => {
   gestureMode = null;
 
   const w = osEl.clientWidth;
+  const h = osEl.clientHeight;
 
   if (isLocked) {
-    gestureMode = "lock-unlock";
+    if (gStartY > h * 0.45) {
+      gestureMode = "lock-unlock";
+    }
     return;
   }
 
@@ -2285,6 +2070,16 @@ osEl.addEventListener("pointerdown", e => {
     return;
   }
 
+  if (activeApp && gStartY > h - 75) {
+    gestureMode = "app-close";
+    return;
+  }
+
+  if (!activeApp && gStartY > h - 110) {
+    gestureMode = "home-up-switcher";
+    return;
+  }
+
   if (!activeApp) {
     gestureMode = "home-swipe";
   }
@@ -2303,7 +2098,7 @@ osEl.addEventListener("pointermove", e => {
 
   if (gestureMode === "lock-unlock") {
     e.preventDefault();
-    const p = Math.max(0, Math.min(1, -dy / (h * 0.45)));
+    const p = Math.max(0, Math.min(1, -dy / (h * 0.42)));
     setLockSwipeProgress(p);
   } else if (gestureMode === "cc-pull") {
     e.preventDefault();
@@ -2326,8 +2121,10 @@ osEl.addEventListener("pointerup", e => {
   const dx = e.clientX - gStartX;
 
   if (gestureMode === "lock-unlock") {
-    if (lockDragProgress >= 0.48 || -dy > 140) {
+    if (-dy > 75 || gVelocityY < -0.45) {
       unlockWithHarmony();
+    } else {
+      setLockSwipeProgress(0);
     }
   } else if (gestureMode === "cc-pull") {
     if (ccProgress > 0.24 || gVelocityY > 0.4) snapOpenCC();
@@ -2341,6 +2138,12 @@ osEl.addEventListener("pointerup", e => {
   } else if (gestureMode === "nc-dismiss") {
     if (ncProgress < 0.78 || gVelocityY < -0.4) snapCloseNC();
     else snapOpenNC();
+  } else if (gestureMode === "app-close") {
+    if (-dy > 80 || gVelocityY < -0.45) {
+      morphCloseApp();
+    }
+  } else if (gestureMode === "home-up-switcher") {
+    if (-dy > 70 || gVelocityY < -0.45) openAppSwitcher();
   } else if (gestureMode === "switcher-swipe") {
     if (recentApps.length > 0 && Math.abs(dx) > 45) {
       activeSwitcherIdx = dx < 0
@@ -2354,6 +2157,17 @@ osEl.addEventListener("pointerup", e => {
   }
 
   gestureMode = null;
+});
+
+/* Bottom Home Bar Tap */
+$("homeBarZone").addEventListener("click", () => {
+  if (isLocked) { unlockWithHarmony(); return; }
+  if ($("appSwitcher").classList.contains("open")) { closeAppSwitcher(); return; }
+  if (ccProgress > 0.5) { snapCloseCC(); return; }
+  if (ncProgress > 0.5) { snapCloseNC(); return; }
+  if ($("spotlightOverlay").classList.contains("open")) { closeSpotlight(); return; }
+  if (activeApp) { morphCloseApp(); return; }
+  if (homePageIndex === 1) { setHomePage(0); }
 });
 
 /* Control Center Vertical Sliders */
@@ -2421,7 +2235,7 @@ function renderSpotlight(q) {
 }
 
 /* =========================================================================
-   APP VIEW BUILDERS
+   APP VIEW BUILDERS (Functional Apps + Clean Dark-Mode Coming Soon Screens)
    ========================================================================= */
 function buildAppHTML(name) {
   const labelUpper = formatOSString(name);
@@ -2430,7 +2244,7 @@ function buildAppHTML(name) {
     const iconHTML = sourceIcon ? sourceIcon.innerHTML : `<span style="font-size:32px;">✦</span>`;
     return `
       <div style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;gap:18px;">
-        <div style="width:92px;height:92px;aspect-ratio:1/1;border-radius:24px;background:#1c1c1e;display:grid;place-items:center;box-shadow:0 18px 42px rgba(10,132,255,0.28), inset 0 1px 1px rgba(255,255,255,0.25);transform:scale(1.12);">
+        <div style="width:92px;height:92px;border-radius:24px;background:#1c1c1e;display:grid;place-items:center;box-shadow:0 18px 42px rgba(10,132,255,0.28), inset 0 1px 1px rgba(255,255,255,0.25);transform:scale(1.12);">
           ${iconHTML}
         </div>
         <div style="margin-top:8px;">
@@ -2470,7 +2284,7 @@ function buildAppHTML(name) {
           </div>
           <div style="display:flex;justify-content:center;align-items:center;gap:28px;margin-top:14px;">
             <span style="width:52px;"></span>
-            <button onclick="triggerCallSim()" style="width:72px;height:72px;aspect-ratio:1/1;border-radius:22px;background:var(--ios-green);display:grid;place-items:center;box-shadow:0 8px 24px rgba(48,209,88,0.4);">
+            <button onclick="triggerCallSim()" style="width:72px;height:72px;border-radius:22px;background:var(--ios-green);display:grid;place-items:center;box-shadow:0 8px 24px rgba(48,209,88,0.4);">
               <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             </button>
             <button onclick="backspaceDial()" style="width:52px;height:52px;display:grid;place-items:center;color:rgba(255,255,255,0.75);font-size:20px;">⌫</button>
@@ -2480,7 +2294,7 @@ function buildAppHTML(name) {
     case "Settings":
       return `
         <div class="ios-card" style="display:flex;align-items:center;gap:14px;">
-          <div style="width:52px;height:52px;aspect-ratio:1/1;border-radius:16px;background:linear-gradient(135deg,#ffd60a,#ff9f0a);display:grid;place-items:center;font-size:26px;">🍋</div>
+          <div style="width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,#ffd60a,#ff9f0a);display:grid;place-items:center;font-size:26px;">🍋</div>
           <div>
             <div style="font-size:15px;font-weight:700;">MY PHONE</div>
             <div style="font-size:11.5px;color:#8e8e93;">LEMON · LC PHONE PURA WIDE (1ST GEN.)</div>
@@ -2502,6 +2316,20 @@ function buildAppHTML(name) {
           <div class="ios-row"><span>BATTERY HEALTH</span><span style="color:#30d158;font-weight:600;">100%</span></div>
         </div>`;
 
+    case "Calculator":
+      return `
+        <div style="display:flex;flex-direction:column;justify-content:flex-end;height:100%;">
+          <input id="calcOut" value="0" readonly style="width:100%;text-align:right;font-size:48px;font-weight:300;padding:8px 6px 20px;color:#fff;">
+          <div class="calc-pad">
+            ${["AC","±","%","÷","7","9","4","×","5","6","−","1","2","3","+","0",".","="].map(k => {
+              const isFn = ["AC","±","%"].includes(k);
+              const isOp = ["÷","×","−","+","="].includes(k);
+              const zeroSpan = k === "0" ? "grid-column:span 2;aspect-ratio:auto;border-radius:22px;justify-content:flex-start;padding-left:28px;" : "";
+              return `<button class="calc-key ${isFn?"fn":""} ${isOp?"op":""}" style="${zeroSpan}" onclick="runCalc('${k}')">${formatOSString(k)}</button>`;
+            }).join("")}
+          </div>
+        </div>`;
+
     case "Notes":
       const saved = localStorage.getItem("lumeos_notes") || "";
       return `
@@ -2514,13 +2342,13 @@ function buildAppHTML(name) {
       return `
         <div style="background:linear-gradient(180deg,#3b5984,#1f324d);color:#fff;border-radius:26px;padding:28px 20px;text-align:center;margin-bottom:16px;">
           <div style="font-size:21px;font-weight:500;">BAGHDAD</div>
-          <div style="font-size:66px;font-weight:200;line-height:1.05;">27°</div>
+          <div style="font-size:66px;font-weight:200;line-height:1.05;">26°</div>
           <div style="font-size:14px;opacity:0.92;">CLOUDY</div>
-          <div style="font-size:12.5px;opacity:0.78;margin-top:4px;">H: 28° L: 16°</div>
+          <div style="font-size:12.5px;opacity:0.78;margin-top:4px;">H: 29° L: 16°</div>
         </div>
         <div class="ios-card">
           <div style="font-size:11px;font-weight:600;color:#8e8e93;margin-bottom:8px;">5-DAY FORECAST</div>
-          <div class="ios-row"><b>TODAY</b><span>☁️</span><span>16° — 28°</span></div>
+          <div class="ios-row"><b>TODAY</b><span>☁️</span><span>16° — 29°</span></div>
           <div class="ios-row"><b>MONDAY</b><span>☀️</span><span>17° — 29°</span></div>
           <div class="ios-row"><b>TUESDAY</b><span>⛅</span><span>15° — 26°</span></div>
         </div>`;
@@ -2532,7 +2360,7 @@ function buildAppHTML(name) {
             <span style="font-size:32px;">📷</span>
             <span style="font-size:12px;">LC PURA WIDE 50MP VIEWFINDER</span>
           </div>
-          <button onclick="cameraFlashEffect()" style="width:68px;height:68px;aspect-ratio:1/1;border-radius:22px;border:4px solid #fff;background:rgba(255,255,255,0.22);"></button>
+          <button onclick="cameraFlashEffect()" style="width:68px;height:68px;border-radius:22px;border:4px solid #fff;background:rgba(255,255,255,0.22);"></button>
         </div>`;
 
     case "Safari":
@@ -2552,7 +2380,7 @@ function buildAppHTML(name) {
         </div>
         <div style="display:flex;gap:8px;">
           <input id="msgBox" placeholder="IMESSAGE" style="flex:1;background:#fff;padding:12px 16px;border-radius:20px;border:1px solid #d1d1d6;">
-          <button onclick="postMessage()" style="width:42px;height:42px;aspect-ratio:1/1;border-radius:14px;background:var(--ios-blue);color:#fff;font-weight:700;">↑</button>
+          <button onclick="postMessage()" style="width:42px;height:42px;border-radius:14px;background:var(--ios-blue);color:#fff;font-weight:700;">↑</button>
         </div>`;
 
     case "Photos":
@@ -2595,6 +2423,28 @@ function toggleSerialBlur() {
   serialVisible = !serialVisible;
   const el = $("serialText");
   if (el) el.style.filter = serialVisible ? "none" : "blur(5px)";
+}
+
+let cVal = "0", cMem = null, cOp = null, cClear = false;
+function runCalc(k) {
+  const out = $("calcOut");
+  if (!out) return;
+  if (k === "AC") { cVal = "0"; cMem = null; cOp = null; }
+  else if (k === "±") { cVal = String(Number(cVal) * -1); }
+  else if (k === "%") { cVal = String(Number(cVal) / 100); }
+  else if (["÷","×","−","+","="].includes(k) === false) {
+    cVal = cClear ? k : (cVal === "0" && k !== "." ? k : cVal + k);
+    cClear = false;
+  } else if (["÷","×","−","+"].includes(k)) {
+    cMem = Number(cVal); cOp = k; cClear = true;
+  } else if (k === "=") {
+    if (cMem !== null && cOp) {
+      const a = cMem, b = Number(cVal);
+      cVal = String({ "+": a + b, "−": a - b, "×": a * b, "÷": b === 0 ? "ERROR" : a / b }[cOp]);
+      cMem = null; cOp = null; cClear = true;
+    }
+  }
+  out.value = formatOSString(cVal);
 }
 
 function postMessage() {
